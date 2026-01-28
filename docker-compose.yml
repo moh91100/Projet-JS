@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # 1. Base de données PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: job-ai-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: job_ai_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # 2. Backend (Node.js + Express)
+  api:
+    build: ./backend
+    container_name: job-ai-api
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/job_ai_db
+      - PORT=3000
+      - JWT_SECRET=mon_super_secret_temporaire
+      # Ajoute ta clé API IA plus tard ici ou dans un fichier .env
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev
+
+  # 3. Frontend (React + Vite)
+  web:
+    build: ./frontend
+    container_name: job-ai-web
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    # L'option --host est OBLIGATOIRE pour que Vite soit accessible depuis Windows/Mac
+    command: npm run dev -- --host 
+
+volumes:
+  postgres_data:
