@@ -1,9 +1,15 @@
+// backend/index.js
 const express = require('express');
+const cors = require('cors');
+const pool = require('./db'); // Ça lance la connexion au dessus
+
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('le backend node.js marche gg wl a mohamed le boss');
+  res.send('Test Infrastructure OK : Backend actif gg wl mohamed');
 });
 
 app.listen(port, () => {
