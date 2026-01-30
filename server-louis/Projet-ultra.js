@@ -1,6 +1,6 @@
 const express = require('express')
+const cors = require ('cors')
 const app = express()
-const  = require ('cors')
 const port = 3000
 
 app.get('/', (req, res) => {
