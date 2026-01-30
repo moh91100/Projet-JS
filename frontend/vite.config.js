@@ -5,10 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true,
-    port: 5173,
+    host: '0.0.0.0', // IMPÉRATIF pour Docker : écoute sur toutes les adresses
+    port: 5173,      // Le port officiel
+    strictPort: true,
     watch: {
-      usePolling: true
-    }
+      usePolling: true, // Force la détection des fichiers sur ton Mac
+    },
   }
 })
