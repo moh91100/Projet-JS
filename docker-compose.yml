@@ -6,8 +6,8 @@ services:
     container_name: career_db
     restart: always
     environment:
-      POSTGRES_USER: user123
-      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: mlj1234
+      POSTGRES_PASSWORD: mlg123
       POSTGRES_DB: career_app_db
     ports:
       - "5432:5432"
