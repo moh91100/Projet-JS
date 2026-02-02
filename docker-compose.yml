@@ -1,41 +1,45 @@
-version: '3.8'
-
 services:
+  # 1. Base de données PostgreSQL
   db:
-    image: postgres:lts-alpine
+    image: postgres:15-alpine
     restart: always
     environment:
       POSTGRES_USER: lmj1234
-      POSTGRES_PASSWORD:lmj1234 
+      POSTGRES_PASSWORD: lmj1234
       POSTGRES_DB: db_postgresql
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
 
-  # 2. Le Backend 
+  # 2. Backend (Node.js) - Passage sur le port 5001
   api:
-    build: ./api
+    build: 
+      context: ./Backend/api
+      dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"  # Ton Mac utilisera 5001 pour parler au 5000 du conteneur
     volumes:
-      - ./api:/app           
-      - /app/node_modules    
+      - ./Backend/api:/app
+      - /app/node_modules
     environment:
-      DATABASE_URL: postgres://mlj1234:mlj1234@db:5432/job_assistant_db
+      DATABASE_URL: postgres://lmj1234:lmj1234@db:5432/db_postgresql
       JWT_SECRET: ma_super_cle_secrete
     depends_on:
-      - db                
+      - db
 
-  # 3. Le Frontend 
+  # 3. Frontend (React / Vite)
   web:
-    build: ./web
+    build: 
+      context: ./Frontend/web
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
     volumes:
-      - ./web:/app            
+      - ./Frontend/web:/app
       - /app/node_modules
     depends_on:
-      - api                   
+      - api
+
 volumes:
   db_data:
