@@ -1,0 +1,17 @@
+# Dépendances (Pour Backend ET Frontend)
+node_modules/
+
+# Environnement (Mots de passe)
+.env
+
+# Logs et erreurs
+npm-debug.log*
+yarn-debug.log*
+
+# Fichiers système (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# Dossiers de build (si Jahed compile son site)
+dist/
+build/
