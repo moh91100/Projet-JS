@@ -1,11 +1,14 @@
-const express = require('express');
-const app = express();
-const PORT = 5000;
+const express = require('express')
+const cors = require('cors');
+const app = express()
+const port = 5000
 
-app.get('/', (req, res) => {
-  res.send('L\'API est en vie !');
-});
+app.use(cors());
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
-});
+app.get('/ping', (req, res) => {
+  res.send('pong')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
