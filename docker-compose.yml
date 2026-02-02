@@ -1,5 +1,4 @@
 services:
-  # 1. Base de données PostgreSQL
   db:
     image: postgres:15-alpine
     restart: always
@@ -12,13 +11,12 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
-  # 2. Backend (Node.js) - Passage sur le port 5001
   api:
     build: 
       context: ./Backend/api
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"  # Ton Mac utilisera 5001 pour parler au 5000 du conteneur
+      - "5001:5000" 
     volumes:
       - ./Backend/api:/app
       - /app/node_modules
@@ -28,7 +26,6 @@ services:
     depends_on:
       - db
 
-  # 3. Frontend (React / Vite)
   web:
     build: 
       context: ./Frontend/web
