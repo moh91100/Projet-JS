@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS documents;
-DROP TABLE IF EXISTS users;
+CREATE TABLE documents;
+CREATE TABLE users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
