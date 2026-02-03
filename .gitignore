@@ -1,17 +1,34 @@
-# Dépendances (Pour Backend ET Frontend)
 node_modules/
+Backend/api/node_modules/
+Frontend/web/node_modules/
 
-# Environnement (Mots de passe)
+.docker/
+*.db-data/
+
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Logs et erreurs
 npm-debug.log*
 yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
 
-# Fichiers système (Mac/Windows)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
 .DS_Store
 Thumbs.db
 
-# Dossiers de build (si Jahed compile son site)
 dist/
 build/
+Backend/api/dist/
+Frontend/web/dist/
