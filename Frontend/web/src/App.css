@@ -1,0 +1,40 @@
+
+.centre-tout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center; 
+  min-height: 100vh;      
+  text-align: center;     
+  margin: 0;
+  background-color: #f8f9fa; 
+}
+
+
+nav {
+  margin-bottom: 20px;
+}
+
+
+hr {
+  width: 50%;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+
+button, input, textarea {
+  margin: 10px 0;
+  padding: 8px;
+}
+
+
+.result-box {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  max-width: 400px;
+}
