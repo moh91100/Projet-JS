@@ -1,18 +1,15 @@
-CREATE TABLE documents;
-CREATE TABLE users;
-
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE documents (
+CREATE TABLE IF NOT EXISTS documents (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    type VARCHAR(50) NOT NULL,    
-    form_data JSON NOT NULL,     
-    generated_content TEXT,              
+    type VARCHAR(50) NOT NULL,
+    form_data JSON NOT NULL,
+    generated_content TEXT,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
