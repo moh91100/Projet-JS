@@ -39,14 +39,20 @@ DB : db_postgresql
 Projet-JS/
 ├── Backend/
 │   └── api/
-│       ├── Dockerfile      # Construction de l'image Node.js
-│       ├── index.js        # Serveur Express principal
-│       └── package.json    # Dépendances (express, etc.)
+│       ├── node_modules/
+│       ├── Dockerfile
+│       ├── index.js
+│       └── package.json
+├── Database/
+│   └── init.sql
 ├── Frontend/
 │   └── web/
-│       ├── Dockerfile      # Construction de l'image Vite/React
-│       ├── index.html      # Point d'entrée de l'application
-│       └── package.json    # Dépendances (react, vite, etc.)
-├── docker-compose.yml      # Orchestration de tous les services
-└── README.md               # Documentation du projet
-
+│       ├── src/
+│       ├── public/
+│       ├── Dockerfile
+│       ├── index.html
+│       ├── vite.config.js
+│       └── package.json
+├── .gitignore
+├── docker-compose.yml
+└── README.md
