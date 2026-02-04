@@ -20,10 +20,6 @@ client.connect()
     console.log(erreur);
   });
 
-app.get('/ping', (req, res) => {
-  res.send('pong');
-});
-
 app.post('/inscription', async (req, res) => {
     const emailRecu = req.body.email;
     const passwordRecu = req.body.password;
