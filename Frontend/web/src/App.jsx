@@ -4,16 +4,35 @@ import './App.css'
 function App() {
   const [page, setPage] = useState("accueil")
   const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("") 
   const [metier, setMetier] = useState("")
   const [competences, setCompetences] = useState("")
   const [resultat, setResultat] = useState("")
+
+  const envoyerInscription = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/inscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }) 
+      })
+      
+      if (response.ok) {
+        alert("Succès : Compte créé pour " + email)
+      } else {
+        alert("Erreur lors de l'inscription")
+      }
+    } catch (err) {
+      alert("Impossible de contacter le serveur (Vérifie qu'il est lancé !)")
+    }
+  }
 
   const envoyerAuServeur = async (e) => {
     e.preventDefault()
     setResultat("Connexion au serveur en cours...")
     
     try {
-      const response = await fetch('http://localhost:5001/api/generate', {
+      const response = await fetch('http://localhost:5000/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ metier, competences })
@@ -21,7 +40,7 @@ function App() {
       const data = await response.json()
       setResultat(data.output_text)
     } catch (err) {
-      setResultat("Erreur : Le serveur ne répond pas sur le port 5001.")
+      setResultat("Erreur : Le serveur ne répond pas sur le port 5000.")
     }
   }
 
@@ -45,6 +64,7 @@ function App() {
         </div>
       )}
 
+      {/* adresse mail */}
       {page === "inscription" && (
         <div>
           <h2>Créer un compte</h2>
@@ -52,11 +72,20 @@ function App() {
             placeholder="Email" 
             onChange={(e) => setEmail(e.target.value)} 
           />
-          <button onClick={() => alert("Compte créé : " + email)}>
-            Valider
+          <br /><br />
+          {/* mot de passe */}
+          <input 
+            type="password"
+            placeholder="Mot de passe" 
+            onChange={(e) => setPassword(e.target.value)} 
+          />
+          <br /><br />
+          <button onClick={envoyerInscription}>
+            Valider l'inscription
           </button>
         </div>
       )}
+      {                                       }
 
       {page === "cv" && (
         <div>

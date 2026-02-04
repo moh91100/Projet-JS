@@ -29,7 +29,7 @@ app.post('/inscription', async (req, res) => {
     const passwordRecu = req.body.password;
     console.log("J'ai recu une demande pour : " + emailRecu);
     const requeteSQL = 'INSERT INTO users (email, password) VALUES ($1, $2)';
-    const valeurs = [emailRecu, passwordRecu];
+    const valeurs = [emailRecu, passwordRecu];  
     try {
         await client.query(requeteSQL, valeurs);
         res.send("Utilisateur inscrit avec succes.");
