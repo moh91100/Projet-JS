@@ -1,58 +1,77 @@
-## Projet-JS Louis, Mohamed, Jahed
+# IA Job Assistant - Fullstack Dockerized
 
-Ce projet est une app web moderne utilisant une architecture conteneurisée avec Docker. Elle permet de gére des CV et des lettres de motivation assistés par IA.
+Ce projet est une plateforme d'assistance à la recherche d'emploi (génération de CV, lettres de motivation) utilisant une architecture micro-services conteneurisée.
 
-## Architecture du projet
+## Architecture du Projet
 
-Le projet est divisé en troix services :
-**Frontend** : Application react / vite (Port 5173)
-**Backend** : API Node.js / Express (Port 5001:5000)
-**Database** : POstgreSQL (Port 5432)
+L'application est orchestrée avec **Docker Compose** et se divise en trois services :
+
+* **Frontend** : React + Vite (Port 5173)
+* **Backend** : Node.js + Express (Port 5001 -> 5000 interne)
+* **Database** : PostgreSQL 15 (Port 5432)
+* **Tests** : Cypress pour les tests de bout en bout (E2E)
+
+---
 
 ## Prérequis
 
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et lancé.
-* [Node.js](https://nodejs.org/)
+* [Node.js](https://nodejs.org/) installé (nécessaire pour lancer Cypress en local).
 
-## Démarrage rapide
+---
 
-CLoner le projet
-Se placer à la racine du projet
-Lancer l'environnement complet (docker compose up --build)
+## Installation et Démarrage
 
-Accéder aux services : 
-Interface Web : http://localhost:5173
-API Backend : http://localhost:5001
-DB : localhost:5432
+1. **Cloner le projet** :
+   ```
+   git clone [https://github.com/moh91100/Projet-JS.git](https://github.com/moh91100/Projet-JS.git)
+   cd Projet-JS
 
-## Config DB
+2. **Lancer l'environnement avec Docker** :
 
-Type : PostgreSQL
+docker compose up --build
+
+3. **Accéder aux interfaces** :
+
+Web : http://localhost:5173
+
+API (Backend) : http://localhost:5001
+
+Tests End-to-End (Cypress)
+Pour vérifier que le scénario d'inscription fonctionne :
+
+4. **Allez dans le dossier frontend** :
+
+cd Frontend/web
+Lancez Cypress :
+
+npx cypress open
+Sélectionnez le test inscription.cy.js dans l'interface Cypress.
+
+Configuration de la Base de Données
+La base de données est automatiquement initialisée via le script Database/init.sql.
+
 Hôte : localhost
+
 Port : 5432
-User : lmj1234
-Mdp : 
-DB : db_postgresql
 
-## Stucture du projet
+Utilisateur : lmj1234
 
-Projet-JS/
-├── Backend/
-│   └── api/
-│       ├── node_modules/
-│       ├── Dockerfile
-│       ├── index.js
-│       └── package.json
-├── Database/
-│   └── init.sql
-├── Frontend/
-│   └── web/
-│       ├── src/
-│       ├── public/
-│       ├── Dockerfile
-│       ├── index.html
-│       ├── vite.config.js
-│       └── package.json
-├── .gitignore
-├── docker-compose.yml
-└── README.md
+Mot de passe : lmj1234
+
+Base de données : db_postgresql
+
+# Structure des Dossiers
+.
+├── Backend/api/            # Code serveur et routes API (Node.js)
+├── Frontend/web/           # Application React, Vite et tests Cypress
+├── Database/               # Scripts d'initialisation SQL (Tables users/docs)
+├── docker-compose.yml      # Orchestration des conteneurs Docker
+├── .gitignore              # Exclusion des fichiers inutiles (node_modules, etc.)
+└── README.md               # Documentation du projet
+
+# Auteurs:
+
+Mohamed (@moh91100)
+Louis   (cptpinguin)
+Jahed   (jahed94)
