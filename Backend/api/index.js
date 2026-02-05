@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 const client = new pg.Client({
-  connectionString: 'postgres://lmj1234:lmj1234@localhost:5432/db_postgresql'
+  connectionString: 'postgres://lmj1234:lmj1234@db:5432/db_postgresql'
 });
 
 client.connect()
