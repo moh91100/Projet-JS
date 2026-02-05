@@ -9,7 +9,6 @@ L'application est orchestrée avec **Docker Compose** et se divise en trois serv
 * **Frontend** : React + Vite (Port 5173)
 * **Backend** : Node.js + Express (Port 5001 -> 5000 interne)
 * **Database** : PostgreSQL 15 (Port 5432)
-* **Tests** : Cypress pour les tests de bout en bout (E2E)
 
 ---
 
@@ -37,16 +36,8 @@ Web : http://localhost:5173
 
 API (Backend) : http://localhost:5001
 
-Tests End-to-End (Cypress)
-Pour vérifier que le scénario d'inscription fonctionne :
 
 4. **Allez dans le dossier frontend** :
-
-cd Frontend/web
-Lancez Cypress :
-
-npx cypress open
-Sélectionnez le test inscription.cy.js dans l'interface Cypress.
 
 Configuration de la Base de Données
 La base de données est automatiquement initialisée via le script Database/init.sql.
@@ -55,9 +46,9 @@ Hôte : localhost
 
 Port : 5432
 
-Utilisateur : lmj1234
+Utilisateur : ######
 
-Mot de passe : lmj1234
+Mot de passe : ######
 
 Base de données : db_postgresql
 
